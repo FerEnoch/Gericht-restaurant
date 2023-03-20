@@ -82,7 +82,7 @@
   font-family: var(--font-alt);
   color: var(--color-white);
   font-weight: 400;
-  letter-spacing: 0.008em;
+  letter-spacing: 0.04em;
   text-transform: capitalize;
   line-height: 28px;
   font-size: 14px;
@@ -164,7 +164,8 @@
 
 @media screen and (max-width: 450px) {
   .p__opensans {
-    font-size: 12px;
+    letter-spacing: 0.1px;
+    font-size: 8px;
   }
 
   .p__cormorant {
