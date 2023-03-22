@@ -164,12 +164,12 @@
 
 @media screen and (max-width: 450px) {
   .p__opensans {
-    letter-spacing: 0.1px;
-    font-size: 8px;
+    letter-spacing: 0.3px;
+    font-size: 12px;
   }
 
   .p__cormorant {
-    font-size: 19px;
+    font-size: 16px;
   }
 
   .headtext__cormorant {
