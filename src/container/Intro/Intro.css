@@ -28,9 +28,16 @@
     font-size: 30px;
 }
 
+.app__video-error img {
+    width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
+}
+
 @media screen and (max-width: 480px) {
     .app__video {
-        height: 50vh;
+        height: 45vh;
     }
 
     .app__video-overlay_circle {

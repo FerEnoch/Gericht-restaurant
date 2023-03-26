@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
 // icons
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs';
-// video
+// import video & video-poster
 import { meal } from '../../constants';
+import { images } from '../../constants';
 // css
 import './Intro.css';
 // custom hook
@@ -10,55 +11,67 @@ import { useObserver } from '../../constants/hooks/useObserver';
 
 
 const Intro = () => {
-  const [playVideo, setPlayVideo] = useState(false);
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+  const [vidError, setVidError] = useState(false);
   const vidRef = useRef();
+
   const [videoRef, showSection] = useObserver({
     root: null,
     threshold: 0.3
   });
+
   const handleVideo = () => {
-    setPlayVideo(prevState => !prevState);
-    if (playVideo) {
+    setIsPlayingVideo(prevState => !prevState);
+    if (isPlayingVideo) {
       vidRef.current.pause();
     } else {
       vidRef.current.play();
     }
   }
 
-  /**
-   * The commented parts were to try a diff. video
-   * handling, with the overlay dissapearing when playing.
-   */
-
-  // const handleEndingVideo = evt => {
-  //   setPlayVideo(false);
-  // }
-
   return (
-    <div
-      ref={videoRef}
-      className={`app__video ${showSection ? 'section__show' : 'section__hide'}`}>
-      <video
-        ref={vidRef}
-        loop
-        // onEnded={handleEndingVideo}
-        controls={false}
-        muted
-      >
-        <source src={meal} type='video/mp4'></source>
-      </video>
-      {/* {!playVideo && */}
-      <div className="app__video-overlay flex__center">
-        <div className="app__video-overlay_circle flex__center"
-          onClick={handleVideo}>
-          {playVideo
-            ? <BsPauseFill className='app__video-controls' color='#fff' />
-            : <BsFillPlayFill className='app__video-controls' color='#fff' />
-          }
-        </div>
-      </div>
-      {/* } */}
-    </div>
+    <div ref={videoRef}
+      className={`
+      ${vidError ? 'app__video-error' : 'app__video'} 
+      ${showSection ? 'section__show' : 'section__hide'}
+      `}>
+      {
+        !vidError ? (
+          <>
+            <video
+              ref={vidRef}
+              loop
+              controls={false}
+              muted
+              onError={() => setVidError(true)}
+              preload='true'
+            >
+              <source src={meal} type='video/mp4'></source>
+            </video>
+            <div className="app__video-overlay flex__center">
+              <div className="app__video-overlay_circle flex__center"
+                onClick={handleVideo}>
+                {isPlayingVideo
+                  ? <BsPauseFill className='app__video-controls' color='#fff' />
+                  : <BsFillPlayFill className='app__video-controls' color='#fff' />
+                }
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <img src={images.mealPoster}
+              alt='A couple enjoying a meal and toating' />
+            <p className='p__opensans flex__center'
+              style={{ textTransform: 'none', fontSize: '13px', textAlign: 'center' }}>
+              Lo siento, este video no se puede reproducir en su dispositivo.
+              <br />
+              Por favor intente con otro dispositivo.
+            </p>
+          </>
+        )
+      }
+    </div >
   );
 };
 
