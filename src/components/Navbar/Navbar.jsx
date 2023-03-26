@@ -6,15 +6,12 @@ import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import images from '../../constants/images';
 // css
 import './Navbar.css';
-// custom hook
-import { useObserver } from '../../constants/hooks/useObserver';
 
 
 const Navbar = () => {
   const [prevScroll, setPrevScroll] = useState();
   const [isVisible, setIsVisible] = useState(true);
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [navbarRef] = useObserver({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,10 +21,10 @@ const Navbar = () => {
     }
     window.addEventListener('scroll', handleScroll);
 
-  }, [navbarRef, prevScroll, isVisible])
+  }, [prevScroll, isVisible])
 
   return (
-    <nav ref={navbarRef} className={`app__navbar ${isVisible ? 'navbar__show' : 'navbar__hide'}`}>
+    <nav className={`app__navbar ${isVisible ? 'navbar__show' : 'navbar__hide'}`}>
       <div className='app__navbar-logo'>
         <img src={images.gericht}
           alt="app logo" />
