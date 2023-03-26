@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 // icons
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs';
 // import video & video-poster
-import { meal } from '../../constants';
+import { meal_mp4, meal_webm } from '../../constants';
 import { images } from '../../constants';
 // css
 import './Intro.css';
@@ -46,7 +46,8 @@ const Intro = () => {
               onError={() => setVidError(true)}
               preload='true'
             >
-              <source src={meal} type='video/mp4'></source>
+              <source src={meal_mp4} type='video/mp4' />
+              <source src={meal_webm} type='video/webm' />
             </video>
             <div className="app__video-overlay flex__center">
               <div className="app__video-overlay_circle flex__center"
