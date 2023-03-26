@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 // components
 import { SubHeading } from '../../components';
 // assets
@@ -7,8 +7,13 @@ import { images } from '../../constants';
 import { BsInstagram, BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
 // css
 import './Gallery.css';
+// custom hook
+import { useObserver } from '../../constants/hooks/useObserver';
+
+
 
 const Gallery = () => {
+
   const scrollRef = useRef();
   const galleryImages = [
     images.gallery01,
@@ -16,6 +21,11 @@ const Gallery = () => {
     images.gallery03,
     images.gallery04,
   ]
+
+  const [galleryRef, showSection] = useObserver({
+    root: null,
+    threshold: 0.1
+  });
 
   const scroll = direction => {
     const { current } = scrollRef;
@@ -28,7 +38,8 @@ const Gallery = () => {
   }
 
   return (
-    <div className='app__gallery flex__center'>
+    <div ref={galleryRef}
+      className={`app__gallery flex__center ${showSection ? 'section__show' : 'section__hide'}`}>
       <div className="app__gallery-content">
         <SubHeading title='Instagram' />
         <h1 className="headtext__cormorant">Photo gallery</h1>
@@ -55,6 +66,6 @@ const Gallery = () => {
       </div>
     </div >
   );
-}
+};
 
 export default Gallery;

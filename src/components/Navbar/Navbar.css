@@ -6,7 +6,33 @@
 
     background-color: var(--color-black);
     padding: 1rem 0;
+
+
+    position: absolute;
+    top: 0;
+    z-index: 100;
+
 }
+
+.navbar__show {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    opacity: 1;
+    transform: translateY(0px);
+    transition: transform 500ms ease, position 200ms linear, opacity 100ms linear;
+}
+
+.navbar__hide {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(-80px);
+    transition: transform 500ms ease, position 500ms linear, opacity 800ms linear;
+}
+
+
 
 .app__navbar-logo {
     display: flex;
@@ -131,9 +157,6 @@
 
 
 @media screen and (max-width: 650px) {
-    .app__navber {
-        padding: 1rem;
-    }
 
     .app__navbar-login {
         display: none;

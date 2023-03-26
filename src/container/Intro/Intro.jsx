@@ -1,15 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, forwardRef } from 'react';
 // icons
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs';
 // video
 import { meal } from '../../constants';
 // css
 import './Intro.css';
+// custom hook
+import { useObserver } from '../../constants/hooks/useObserver';
+
 
 const Intro = () => {
   const [playVideo, setPlayVideo] = useState(false);
   const vidRef = useRef();
-
+  const [videoRef, showSection] = useObserver({
+    root: null,
+    threshold: 0.3
+  });
   const handleVideo = () => {
     setPlayVideo(prevState => !prevState);
     if (playVideo) {
@@ -29,7 +35,7 @@ const Intro = () => {
   // }
 
   return (
-    <div className='app__video'>
+    <div ref={videoRef} className={`app__video ${showSection ? 'section__show' : 'section__hide'}`}>
       <video
         ref={vidRef}
         src={meal}
@@ -53,5 +59,6 @@ const Intro = () => {
       {/* } */}
     </div>
   );
-}
+};
+
 export default Intro;
