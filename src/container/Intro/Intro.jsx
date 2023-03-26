@@ -1,4 +1,4 @@
-import React, { useRef, useState, forwardRef } from 'react';
+import React, { useRef, useState } from 'react';
 // icons
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs';
 // video
