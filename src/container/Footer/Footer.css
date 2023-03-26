@@ -116,3 +116,9 @@
         width: 80%;
     }
 }
+
+@media screen and (max-width: 280px) {
+    .footer__copyright>.p__opensans {
+        text-align: center;
+    }
+}

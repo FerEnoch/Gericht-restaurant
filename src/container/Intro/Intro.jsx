@@ -35,24 +35,25 @@ const Intro = () => {
   // }
 
   return (
-    <div ref={videoRef} className={`app__video ${showSection ? 'section__show' : 'section__hide'}`}>
+    <div
+      ref={videoRef}
+      className={`app__video ${showSection ? 'section__show' : 'section__hide'}`}>
       <video
         ref={vidRef}
-        src={meal}
-        type='video/mp4'
         loop
         // onEnded={handleEndingVideo}
         controls={false}
         muted
       >
+        <source src={meal} type='video/mp4'></source>
       </video>
       {/* {!playVideo && */}
       <div className="app__video-overlay flex__center">
         <div className="app__video-overlay_circle flex__center"
           onClick={handleVideo}>
           {playVideo
-            ? <BsPauseFill color='#fff' fontSize={30} />
-            : <BsFillPlayFill color='#fff' fontSize={30} />
+            ? <BsPauseFill className='app__video-controls' color='#fff' />
+            : <BsFillPlayFill className='app__video-controls' color='#fff' />
           }
         </div>
       </div>

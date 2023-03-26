@@ -166,27 +166,34 @@
     padding: 4rem 2rem;
   }
 
-  .p__cormorant {
-    font-size: 21px;
+  .p__opensans {
+    font-size: 18px;
   }
 
-  .p__opensans {
-    font-size: 14px;
+  .p__cormorant {
+    font-size: 21px;
   }
 }
 
 @media screen and (max-width: 450px) {
   .p__opensans {
     letter-spacing: 0.3px;
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .p__cormorant {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .headtext__cormorant {
     font-size: 45px;
     line-height: 70px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .p__opensans {
+    letter-spacing: 0.2px;
+    font-size: 14px;
   }
 }

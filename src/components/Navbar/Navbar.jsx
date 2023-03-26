@@ -9,22 +9,24 @@ import './Navbar.css';
 
 
 const Navbar = () => {
-  const [prevScroll, setPrevScroll] = useState();
-  const [isVisible, setIsVisible] = useState(true);
+  const [prevScrollPosition, setPrevScrollPosition] = useState(window.scrollY);
+  const [showNavbar, setShowNavbar] = useState(true);
   const [toggleMenu, setToggleMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setPrevScroll(window.scrollY);
-      const actualScroll = window.scrollY;
-      setIsVisible(prevScroll > actualScroll);
+      const currentScrollPosition = window.scrollY;
+      setShowNavbar(prevScrollPosition > currentScrollPosition);
+      setPrevScrollPosition(currentScrollPosition);
     }
     window.addEventListener('scroll', handleScroll);
-
-  }, [prevScroll, isVisible])
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [prevScrollPosition])
 
   return (
-    <nav className={`app__navbar ${isVisible ? 'navbar__show' : 'navbar__hide'}`}>
+    <nav className={`app__navbar ${showNavbar ? 'navbar__show' : 'navbar__hide'}`}>
       <div className='app__navbar-logo'>
         <img src={images.gericht}
           alt="app logo" />
