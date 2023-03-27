@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 // icons
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs';
 // import video & video-poster
-import { meal_mp4, meal_webm } from '../../constants';
+import { video } from '../../constants';
 import { images } from '../../constants';
 // css
 import './Intro.css';
@@ -46,8 +46,9 @@ const Intro = () => {
               onError={() => setVidError(true)}
               preload='true'
             >
-              <source src={meal_mp4} type='video/mp4' />
-              <source src={meal_webm} type='video/webm' />
+              <source src={video.meal_mp4} type='video/mp4' />
+              <source src={video.meal_webm} type='video/webm' />
+              <source src={video.meal_avi} type='video/x-msvideo' />
             </video>
             <div className="app__video-overlay flex__center">
               <div className="app__video-overlay_circle flex__center"
@@ -64,7 +65,12 @@ const Intro = () => {
             <img src={images.mealPoster}
               alt='A couple enjoying a meal and toating' />
             <p className='p__opensans flex__center'
-              style={{ textTransform: 'none', fontSize: '13px', textAlign: 'center' }}>
+              style={{
+                fontSize: '13px',
+                lineHeight: '20px',
+                textTransform: 'none',
+                textAlign: 'center'
+              }}>
               Lo siento, este video no se puede reproducir en su dispositivo.
               <br />
               Por favor intente con otro dispositivo.
